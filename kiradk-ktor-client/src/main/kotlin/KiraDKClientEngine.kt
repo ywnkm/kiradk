@@ -6,10 +6,11 @@ import io.ktor.util.*
 
 public class KiraDKClientEngine(
     override val config: KiraDKClientConfig
-) : HttpClientEngineBase("") {
+) : HttpClientEngineBase("KiraDK") {
 
     @OptIn(InternalAPI::class)
     override suspend fun execute(data: HttpRequestData): HttpResponseData {
         TODO("Not yet implemented")
     }
+
 }

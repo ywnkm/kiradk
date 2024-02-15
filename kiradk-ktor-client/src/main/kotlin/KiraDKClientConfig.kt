@@ -1,7 +1,9 @@
 package kiradk.client
 
 import io.ktor.client.engine.*
+import io.ktor.http.*
 
 public class KiraDKClientConfig : HttpClientEngineConfig() {
-    // TODO
+
+    public var proxyUrl: Url? = null
 }

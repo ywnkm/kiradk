@@ -10,4 +10,5 @@ kotlin {
 
 dependencies {
     api(libs.ktor.client.core)
+    api(libs.ktor.network.tls)
 }
