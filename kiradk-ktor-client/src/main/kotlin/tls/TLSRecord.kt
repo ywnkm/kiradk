@@ -1,6 +1,7 @@
 package kiradk.client.tls
 
 import io.ktor.network.tls.*
+import io.ktor.network.tls.extensions.*
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 
@@ -26,5 +27,34 @@ public class TLSHandShake {
 
 public class TLSExtensionRecord(
     public val type: TLSExtensionType,
+    public val length: Int,
     public val packet: ByteReadPacket,
 )
+
+internal class TLSServerHello(
+    val version: TLSVersion,
+    val serverSeed: ByteArray,
+    val sessionId: ByteArray,
+    suite: Short,
+    val compressionMethod: Short,
+    val extensions: List<TLSExtensionRecord> = emptyList()
+) {
+    val cipherSuite: CipherSuite = TODO()
+
+    val hashAndSignAlgorithms: List<HashAndSign>
+
+    init {
+        val algorithms = mutableListOf<HashAndSign>()
+        extensions.forEach {
+            when (it.type) {
+                TLSExtensionType.SignatureAlgorithms -> {
+                    // algorithms += it.packet.parseSignatureAlgorithms()
+                }
+                else -> {
+                }
+            }
+        }
+
+        hashAndSignAlgorithms = algorithms
+    }
+}
